@@ -27,7 +27,8 @@ const settingsInputs = {
     spawnRate: document.getElementById('spawnRate'),
     heroSpeed: document.getElementById('heroSpeed'),
     maxShapes: document.getElementById('maxShapes'),
-    mouseSensitivity: document.getElementById('mouseSensitivity')
+    mouseSensitivity: document.getElementById('mouseSensitivity'),
+    useQuantumEntropy: document.getElementById('useQuantumEntropy')
 };
 const saveSettingsButton = document.getElementById('saveSettings');
 
@@ -96,8 +97,13 @@ function toggleHelp() {
 
 function toggleSettings() {
     settingsMenu.style.display = settingsMenu.style.display === 'block' ? 'none' : 'block';
-    if (settingsMenu.style.display === 'block') pauseGame();
-    else resumeGame();
+    if (settingsMenu.style.display === 'block') {
+        // Set checkbox state based on current setting
+        settingsInputs.useQuantumEntropy.checked = gameState.settings.useQuantumEntropy;
+        pauseGame();
+    } else {
+        resumeGame();
+    }
 }
 
 function toggleMode() {
@@ -114,7 +120,15 @@ function saveSettings() {
     gameState.settings.heroSpeed = parseFloat(settingsInputs.heroSpeed.value);
     gameState.settings.maxShapes = parseInt(settingsInputs.maxShapes.value);
     gameState.settings.mouseSensitivity = parseFloat(settingsInputs.mouseSensitivity.value);
+    gameState.settings.useQuantumEntropy = settingsInputs.useQuantumEntropy.checked;
     gameState.hero.baseSpeed = gameState.settings.heroSpeed;
+
+    // Update entropyManager with new setting
+    entropyManager.useQuantum = gameState.settings.useQuantumEntropy;
+    if (entropyManager.useQuantum && entropyManager.entropyPool.length === 0) {
+        entropyManager.fetchEntropy();
+    }
+
     settingsMenu.style.display = 'none';
     resumeGame();
 }

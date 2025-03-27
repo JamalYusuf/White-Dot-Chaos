@@ -22,7 +22,7 @@
 - [Contributing](#contributing)
 - [License](#license)
 ## Overview
-"White Dot Chaos" is an interactive HTML5 canvas game built with vanilla HTML, CSS, and JavaScript, where players control a white dot navigating a chaotic universe of shapes. The objective is to collide with shapes to score points, collect modifiers, and thrive amidst escalating madness. Featuring two control modes (Auto and Manual), dynamic UI, and an innovative entropy system, the game now supports plugging external randomness sources via HTTP (with a fallback to `Math.random()`). [Play the game now](https://htmlpreview.github.io/?https://github.com/JamalYusuf/White-Dot-Chaos/blob/main/white_dot_chaos.html)!
+"White Dot Chaos" is an interactive HTML5 canvas game built with vanilla HTML, CSS, and JavaScript, where players control a white dot navigating a chaotic universe of shapes. The objective is to collide with shapes to score points, collect modifiers, and thrive amidst escalating madness. Featuring two control modes (Auto and Manual), dynamic UI, and an innovative entropy system, the game now supports plugging external randomness sources via HTTP (with a fallback to `Math.random()`). [Play the game now](https://htmlpreview.github.io/?https://github.com/JamalYusuf/White-Dot-Chaos/blob/main/index.html)!
 
 ![White Dot Chaos Gameplay](/gameplay.gif)
 ## Future Goals: Quantum Randomness
@@ -68,9 +68,9 @@ A primary vision for "White Dot Chaos" is to integrate a **Quantum Random Number
    cd white-dot-chaos
    ```
 2. **Run in web browser** (Recommended):
-   - Open `white_dot_chaos.html` in file explorer, then: drag it into your web browser.
+   - Open `index.html` in file explorer, then: drag it into your web browser.
      ```bash
-     open .white_dot_chaos.html
+     open .index.html
      ```
 3. **Run with Go** :
    - Install Go ([golang.org](https://go.dev/dl/)), then:
