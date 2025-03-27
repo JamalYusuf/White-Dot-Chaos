@@ -28,6 +28,9 @@
 ## Future Goals: Quantum Randomness
 A primary vision for "White Dot Chaos" is to integrate a **Quantum Random Number Generator (QRNG)** as an entropy source, bridging quantum mechanics into the macro world. By replacing `Math.random()` with true quantum randomness fetched via HTTP, the game aims to explore how real randomness affects gameplay and player decision-making.
 
+# To turn on Quantum Randomness
+
+Click the ⚙️ icon and then select the checkbox labled `Use Quantum Entropy` then click `Save & Resume`. The game will now use QRNG source from ANU.
 ### Why Quantum Entropy?
 - **Novelty**: Unlike pseudo-randomness, QRNGs (e.g., from quantum vacuum fluctuations) offer true unpredictability.
 - **Impact**: I hypothesize that quantum entropy introduces a richer set of possible game states, subtly altering player choices. This could increase decision complexity and engagement by injecting "quantum chaos" into the macro experience.
