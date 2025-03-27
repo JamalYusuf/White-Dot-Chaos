@@ -1,18 +1,18 @@
 // Shape class for game objects
 class Shape {
     constructor(isHero = false, isModifier = false, x = null, y = null) {
-        this.x = x ?? Math.random() * (canvas ? canvas.width : window.innerWidth);
-        this.y = y ?? Math.random() * (canvas ? canvas.height : window.innerHeight);
+        this.x = x ?? entropyManager.getRandom() * (canvas ? canvas.width : window.innerWidth);
+        this.y = y ?? entropyManager.getRandom() * (canvas ? canvas.height : window.innerHeight);
         this.isHero = isHero;
         this.isModifier = isModifier;
         this.type = this.assignType();
-        this.size = isHero ? 20 : isModifier ? 15 : 10 + Math.random() * 30;
+        this.size = isHero ? 20 : isModifier ? 15 : 10 + entropyManager.getRandom() * 30;
         this.maxSize = isHero ? 20 : 40;
-        this.color = isHero ? '#ffffff' : isModifier ? '#ffffff' : `hsl(${Math.random() * 360}, 100%, 50%)`;
+        this.color = isHero ? '#ffffff' : isModifier ? '#ffffff' : `hsl(${entropyManager.getRandom() * 360}, 100%, 50%)`;
         this.health = isHero ? Infinity : this.size * 2;
-        this.life = isHero ? Infinity : Math.random() * 600 + 400;
+        this.life = isHero ? Infinity : entropyManager.getRandom() * 600 + 400;
         this.age = 0;
-        this.baseSpeed = isHero ? gameState.settings.heroSpeed : isModifier ? 0 : 0.03 + Math.random() * 0.06;
+        this.baseSpeed = isHero ? gameState.settings.heroSpeed : isModifier ? 0 : 0.03 + entropyManager.getRandom() * 0.06;
         this.speed = this.baseSpeed;
         this.vx = 0;
         this.vy = 0;
@@ -27,13 +27,13 @@ class Shape {
 
     assignType() {
         if (this.isHero) return 'circle';
-        if (this.isModifier) return MODIFIER_TYPES[Math.floor(Math.random() * MODIFIER_TYPES.length)];
-        return SHAPE_TYPES[Math.floor(Math.random() * SHAPE_TYPES.length)];
+        if (this.isModifier) return MODIFIER_TYPES[Math.floor(entropyManager.getRandom() * MODIFIER_TYPES.length)];
+        return SHAPE_TYPES[Math.floor(entropyManager.getRandom() * SHAPE_TYPES.length)];
     }
 
     newTarget(axis) {
         const range = axis === 'x' ? (canvas ? canvas.width : window.innerWidth) : (canvas ? canvas.height : window.innerHeight);
-        return range * 0.1 + Math.random() * range * 0.8;
+        return range * 0.1 + entropyManager.getRandom() * range * 0.8;
     }
 
     update() {
@@ -126,8 +126,8 @@ class Shape {
             this.x = Math.max(this.size, Math.min((canvas ? canvas.width : window.innerWidth) - this.size, this.x));
             this.y = Math.max(this.size, Math.min((canvas ? canvas.height : window.innerHeight) - this.size, this.y));
         } else if (!this.isModifier) {
-            this.x += (this.targetX - this.x) * this.speed + (Math.random() - 0.5) * 2;
-            this.y += (this.targetY - this.y) * this.speed + (Math.random() - 0.5) * 2;
+            this.x += (this.targetX - this.x) * this.speed + (entropyManager.getRandom() - 0.5) * 2;
+            this.y += (this.targetY - this.y) * this.speed + (entropyManager.getRandom() - 0.5) * 2;
         }
     }
 
@@ -261,10 +261,10 @@ class Explosion {
         this.particles = Array.from({ length: 10 }, () => ({
             x: this.x,
             y: this.y,
-            vx: (Math.random() - 0.5) * 6,
-            vy: (Math.random() - 0.5) * 6,
-            size: Math.random() * 5 + 2,
-            life: Math.random() * 20 + 10
+            vx: (entropyManager.getRandom() - 0.5) * 6,
+            vy: (entropyManager.getRandom() - 0.5) * 6,
+            size: entropyManager.getRandom() * 5 + 2,
+            life: entropyManager.getRandom() * 20 + 10
         }));
     }
 
@@ -290,4 +290,13 @@ class Explosion {
 
         this.particles.forEach(p => {
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, ${entropyManager.getRandom() * 100 + 100}, 0, ${p.life / 20})`;
+            ctx.fill();
+        });
+    }
+
+    isDone() {
+        return this.age >= this.life && this.particles.length === 0;
+    }
+}
