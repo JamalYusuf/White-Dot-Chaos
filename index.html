@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Dot Chaos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <button id="startButton">Start Adventure!</button>
+    <canvas id="canvas"></canvas>
+    <div id="gameUI">
+        <div id="scoreBox">Score: 0</div>
+        <div id="shapeStats">Top Shapes: </div>
+        <div id="shapeFreqBar"><canvas id="shapeFreqCanvas" width="200" height="30"></canvas></div>
+        <div id="colorFreqBar"><canvas id="colorFreqCanvas" width="200" height="30"></canvas></div>
+    </div>
+    <div id="modifiers">
+        <span id="speedMod">🚀: 0</span>
+        <span id="aimMod">🎯: 0</span>
+        <span id="shieldMod">🛡️: 0</span>
+        <span id="growMod">🌟: 0</span>
+        <span id="freezeMod">❄️: 0</span>
+    </div>
+    <div id="helpButton">?</div>
+    <div id="settingsButton">⚙️</div>
+    <div id="modeButton">🎮</div>
+    <div id="copyright">© Jamal Yusuf</div>
+    <div id="helpText">
+        <h2>The White Dot Saga</h2>
+        <p>Command the White Dot in a wild universe of shapes! Burst through foes, snag modifiers, and rack up points!</p>
+        <canvas id="helpCanvas"></canvas>
+        <h3>Rules</h3>
+        <p><strong>White Dot:</strong> Speedy 20px+ hero with a 100px magnet. Click to spawn shapes!</p>
+        <p><strong>Modes:</strong> Auto (moves itself) or Manual (mouse + WASD/arrows) via 🎮 button.</p>
+        <p><strong>Objective:</strong> Smash shapes for points. 10 points = modifier; 100 points = spins!</p>
+        <p><strong>Modifiers:</strong> Auto-used randomly or click to trigger!</p>
+        <ul>
+            <li><strong>🚀 Speed Boost</strong> (Red): Zoom x3 (10s)</li>
+            <li><strong>🎯 Aim Assist</strong> (Green): Blast within 200px (10s)</li>
+            <li><strong>🛡️ Shield</strong> (Blue): X-mark & wipe (10s)</li>
+            <li><strong>🌟 Growth</strong> (Yellow): Double size (10s)</li>
+            <li><strong>❄️ Freeze</strong> (Cyan): Stop shapes (10s)</li>
+        </ul>
+        <p><strong>Shapes:</strong> Circles, squares, triangles (10-40px). Same merge (max 40px); others burst.</p>
+        <p>Hit '?' to resume!</p>
+    </div>
+    <div id="settingsMenu">
+        <h2>Settings</h2>
+        <label>Shape Spawn Rate: <input type="range" id="spawnRate" min="0.01" max="0.1" step="0.01" value="0.03"></label>
+        <label>White Dot Speed: <input type="range" id="heroSpeed" min="0.05" max="0.2" step="0.01" value="0.1"></label>
+        <label>Mouse Sensitivity: <input type="range" id="mouseSensitivity" min="0.05" max="0.3" step="0.01" value="0.15"></label>
+        <label>Max Shapes: <input type="range" id="maxShapes" min="10" max="50" step="5" value="20"></label>
+        <button id="saveSettings">Save & Resume</button>
+    </div>
+
+    <!-- Load scripts in order to avoid reference errors -->
+    <script src="js/utils.js"></script>
+    <script src="js/gameState.js"></script>
+    <script src="js/shapes.js"></script>
+    <script src="js/gameLogic.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
