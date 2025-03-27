@@ -3,7 +3,7 @@
 
 ## Overview
 "White Dot Chaos" is an interactive HTML5 canvas game where players control a white dot navigating a chaotic universe of shapes. The goal is to collide with shapes to score points, collect modifiers, and survive the escalating madness. The game supports two control modes (Auto and Manual) and now includes an entropy system for plugging in external randomness sources via HTTP, with a fallback to `Math.random()`.
-
+![Image title](/gameplay.gif){ .image25percent }
 ## Setup and Running
 1. **Clone the Repository**:
    ```bash
